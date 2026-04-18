@@ -1,3 +1,7 @@
+function saveCartToLocalStorage() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
 let cart = [];
 
 const productsDB = [
@@ -6,13 +10,11 @@ const productsDB = [
     { id: 3, name: "Ноутбук MSI Katana 17 HX", price: 89990, category: "laptops" }
 ];
 
-
 const calculateTotal = () => {
     let total = 0;
     cart.forEach(item => total += item.price);
     return total;
 };
-
 
 const renderCart = () => {
     const cartContainer = document.getElementById('dynamic-cart');
@@ -46,7 +48,6 @@ const renderCart = () => {
     }
 
     cartContainer.innerHTML = html;
-
     attachCartEvents();
 };
 
@@ -56,20 +57,20 @@ const attachCartEvents = () => {
             const index = e.target.dataset.index;
             cart.splice(index, 1);
             renderCart();
+            saveCartToLocalStorage();
         });
     });
 
- 
     const clearBtn = document.getElementById('clear-cart-btn');
     if (clearBtn) {
         clearBtn.addEventListener('click', () => {
             cart = [];
             renderCart();
+            saveCartToLocalStorage();
             alert(' Корзина очищена!');
         });
     }
 
-    // Оплата
     const payBtn = document.getElementById('pay-btn');
     if (payBtn) {
         payBtn.addEventListener('click', () => {
@@ -80,11 +81,11 @@ const attachCartEvents = () => {
                 alert(` Оплата прошла успешно!\nСумма: ${sum} ₽\nСпасибо за покупку!`);
                 cart = [];
                 renderCart();
+                saveCartToLocalStorage();
             }
         });
     }
 };
-
 
 const filterProducts = (category) => {
     const items = document.querySelectorAll('.product-item');
@@ -100,7 +101,11 @@ const filterProducts = (category) => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+        cart = JSON.parse(savedCart);
+    }
+
     const filterContainer = document.getElementById('filter-container');
     if (filterContainer) {
         filterContainer.innerHTML = `
@@ -128,6 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (product) {
                 cart.push(product);
                 renderCart();
+                saveCartToLocalStorage();
                 alert(` "${product.name}" добавлен в корзину!`);
             }
         });
