@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Электроника - Каталог</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="catalog.html">Каталог товаров</a></li>
+        </ul>
+    </nav>
+
+    <div id="filter-container"></div>
+    <h1 style="text-align: center; color: #360252;">Каталог</h1>
+
+    <div id="catalog-container">
+        
+        <div class="product-item" data-category="smartphones" data-id="1">
+            <div class="product-card">
+                <img src="1.PNG">
+                <h2>Смартфон Apple iPhone SE (2016) 128 ГБ</h2>
+                <button class="add-to-cart-btn" data-id="1"> В корзину</button>           
+                 <a href="product2.html">Подробнее →</a>
+            </div>
+        </div>
+
+        <div class="product-item" data-category="smartphones" data-id="2">
+            <div class="product-card">
+                <img src="2.PNG">
+                <h2>Смартфон POCO X3 Pro 128 ГБ</h2>
+                <button class="add-to-cart-btn" data-id="2"> В корзину</button>
+                <a href="product.html">Подробнее →</a>
+            </div>
+        </div>
+
+        <div class="product-item" data-category="laptops" data-id="3">
+            <div class="product-card">
+                <img src="3.PNG">
+                <h2>Ноутбук MSI Katana 17 HX</h2>
+                <button class="add-to-cart-btn" data-id="3"> В корзину</button>
+                <a href="product3.html">Подробнее →</a>
+                
+            </div>
+        </div>
+
+    </div>
+
+    <div id="dynamic-cart"></div>
+
+    <footer style="text-align: center; margin-top: 40px; color: #360252;">
+        © Все права защищены
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
